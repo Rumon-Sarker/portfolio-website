@@ -1,99 +1,94 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-import { styles } from "../styles";
-import { github } from "../assets";
-import { SectionWrapper } from "../hoc";
+import { useState } from "react";
 import { projects } from "../constants";
-import { fadeIn, textVariant } from "../utils/motion";
+import { styles } from "../styles";
+import { FaList, FaTh } from "react-icons/fa";
+import ProjectCard from "./ProjectCard";
 
-const ProjectCard = ({
-  index,
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
-}) => {
+const Works = () => {
+  const [filter, setFilter] = useState("All");
+  const [viewMode, setViewMode] = useState("grid");
+
+  const filteredProjects = projects.filter((project) => {
+    if (filter === "All") return true;
+    return project.category === filter;
+  });
+
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
-      <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
-      >
-        <div className='relative w-full h-[230px]'>
-          <img
-            src={image}
-            alt='project_image'
-            className='w-full h-full object-cover rounded-2xl'
-          />
-
-          <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-            >
-              <img
-                src={github}
-                alt='source code'
-                className='w-1/2 h-1/2 object-contain'
-              />
-            </div>
-          </div>
+    <div className="bg-white dark:bg-gray-900 text-black dark:text-white">
+      <div className="container mx-auto px-6 py-16">
+        {/* Header */}
+        <div>
+          <p className={`${styles.sectionSubText} text-black dark:text-gray-200`}>My work</p>
+          <h2 className={`${styles.sectionHeadText} text-black dark:text-white`}>Projects</h2>
         </div>
 
-        <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
+        {/* Description */}
+        <div className="w-full flex">
+          <p className="mt-3 text-gray-600 text-[17px] max-w-3xl leading-[30px] dark:text-gray-300">
+            Following projects showcase my skills and experience through
+            real-world examples of my work. Each project is briefly described with
+            links to code repositories and live demos. It reflects my
+            ability to solve complex problems, work with different technologies,
+            and manage projects effectively.
+          </p>
         </div>
 
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
+        {/* Filters */}
+        <div className="mt-8 flex flex-wrap gap-4">
+          {["All", "Mobile Apps", "Websites", "Other"].map((category) => (
+            <button
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                filter === category
+                  ? "bg-blue-500 text-white dark:bg-blue-600"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              }`}
             >
-              #{tag.name}
-            </p>
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* View Mode Toggle */}
+        <div className="mt-6 flex justify-end">
+          <button
+            onClick={() => setViewMode("grid")}
+            className={`p-2 rounded-lg mr-2 ${
+              viewMode === "grid"
+                ? "bg-blue-500 text-white dark:bg-blue-600"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            }`}
+          >
+            <FaTh className="text-lg" />
+          </button>
+          <button
+            onClick={() => setViewMode("list")}
+            className={`p-2 rounded-lg ${
+              viewMode === "list"
+                ? "bg-blue-500 text-white dark:bg-blue-600"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            }`}
+          >
+            <FaList className="text-lg" />
+          </button>
+        </div>
+
+        {/* Project Display */}
+        <div
+          className={`mt-8 ${
+            viewMode === "grid"
+              ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              : "space-y-6"
+          }`}
+        >
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={`project-${index}`} index={index} {...project} />
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
-const Works = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My work</p>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-      </motion.div>
-
-      <div className='w-full flex'>
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-        >
-          Following projects showcases my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
-        </motion.p>
-      </div>
-
-      <div className='mt-20 flex flex-wrap gap-7'>
-        {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
-        ))}
-      </div>
-    </>
-  );
-};
-
-export default SectionWrapper(Works, "");
+export default Works;

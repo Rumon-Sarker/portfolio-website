@@ -40,12 +40,12 @@ const Hero = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/bg _vedio.mp4" type="video/mp4" />
+        <source src="/videoplayback.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-75 dark:bg-opacity-80"></div>
 
       <div
         className={`absolute inset-0 lg:top-[120px] md:top-[100px] top-[90px] container mx-auto ${styles.paddingX} flex flex-row items-start md:gap-5 gap-2`}

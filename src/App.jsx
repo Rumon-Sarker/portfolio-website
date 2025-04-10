@@ -12,19 +12,21 @@ import {
   StarsCanvas,
 } from "./components";
 import Footer from "./components/Footer";
+import Skills from "./components/Skills";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="relative z-0 bg-primary">
+      <div className="relative z-0 dark:bg-gray-900 bg-white">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
           <Navbar />
           <Hero />
         </div>
         <About />
-        <Experience />
+        {/* <Experience /> */}
         {/* <Tech /> */}
         <Works />
+        <Skills/>
         <Feedbacks />
         <div className="relative z-0">
           <Contact />

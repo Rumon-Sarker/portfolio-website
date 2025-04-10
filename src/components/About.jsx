@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import ResumeButton from './ResumeButton';
 
 const About = () => {
   const { ref, inView } = useInView({
@@ -178,21 +179,9 @@ const About = () => {
         </div>
 
         {/* Resume Download Button */}
-        <motion.div
-          className="flex  mb-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        >
-          <a
-            href="/resume.pdf"
-            download
-            className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-6 py-3 rounded-full text-xl font-semibold shadow-lg hover:from-teal-500 hover:to-blue-500 transition-all duration-300 transform hover:scale-105"
-          >
-            Download Resume
-          </a>
-        </motion.div>
 
+        <ResumeButton/>
+        
       </div>
     </section>
   );
