@@ -4,7 +4,7 @@ import { HiMail } from "react-icons/hi";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-16">
+    <footer className="dark:bg-gray-900 bg-gray-300 dark:text-white text-black py-16">
       <div className="container mx-auto px-6">
         {/* Footer Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -50,16 +50,16 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-600 transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-blue-400 hover:text-blue-600 transition-colors">
                 <FaFacebook size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-blue-400 hover:text-blue-400 transition-colors">
                 <FaTwitter size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-500 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-blue-400 hover:text-blue-500 transition-colors">
                 <FaLinkedinIn size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-pink-500 transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-pink-400 hover:text-pink-500 transition-colors">
                 <FaInstagram size={20} />
               </a>
             </div>
